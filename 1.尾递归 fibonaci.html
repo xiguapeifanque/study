@@ -21,6 +21,9 @@
         if(n<=1){return 1}
         return Fibonacci2 (n-1)+Fibonacci2 (n-2)
     }//普通 n较大时很快产生栈溢出，引发原因是“调用帧”过多
+    //递归函数就是在函数体内调用本函数；
+
+    //递归函数的使用要注意函数终止条件避免死循环；
 
     // console.log(Fibonacci2(10) )
     //3 循环 迭代
