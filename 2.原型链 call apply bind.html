@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function Teat(){
+			return []
+		}
+		Teat.prototype.slice = function(start,end){
+			var result = new Array();
+			start = start || 0;        // 如果不传则取默认值
+			end = end || this.length;  // 如果不传则取默认值
+			console.log('this')
+			console.log(this)
+			//this指向调用的对象，当用了call后，能够改变this的指向，也就是指向传进来的对象，这是关键
+			for(var i = start; i < end; i++){
+				
+				result.push(this[i]);
+			}
+			return result;
+		}
+		var test = new Teat()
+		
+		// console.log(test.slice(0,1))
+		var argument = {
+			0:2,
+			1:3,
+			length:2
+		}
+		var test2 = Array.prototype.concat.apply(test,argument)
+		var test3 = Array.prototype.concat.call(test,argument[0],argument[1])
+		// console.log(test2)
+		// console.log(test3)
+		// console.log(Teat.prototype.slice())
+		// console.log(Teat.prototype.slice.call(argument))
+		// console.log(test)
+		// console.log(test.__proto__==Teat.prototype)
+		// console.log(Teat.prototype)
+		// function Person(){
+		// 	this.name = '2222',
+		// 	this.say=function(){
+		// 		console.log('test')
+		// 		var [test]= arguments
+		// 		console.log(...arguments)
+		// 		var test2=Array.prototype.slice.apply(arguments)
+		// 		var test3 =[6666]
+		// 		var test4=Array.prototype.concat.apply(test3,arguments)
+		// 		console.log(test3)
+		// 		console.log(test2)
+		// 		console.log(test4)
+		// 		return test
+		// 	}
+		// }
+
+		// var person = new Person()
+		// console.log(person.say('555','7777'))
+		function Person(){
+			this.name;
+		}
+		Person.prototype.say=function(){
+			console.log("hello");
+		}
+		
+		var person=new Person();
+		
+		// console.log(Person.__proto__);
+		// console.log(Function.prototype);
+
+		// console.log(Person.prototype.__proto__);
+		// console.log(Object.prototype);
+		
+		// console.log(person.__proto__);
+		// console.log(Person.prototype);
+		
+		// console.log(Person.prototype.constructor);
+		// console.log(Person);
+
+		// console.log(Object.__proto__==Function.prototype);
+		console.log(Function.prototype.__proto__==Object.prototype);
+		console.log(Function.__proto__==Function.prototype);
+		console.log(Function.constructor==Function);
+		console.log(person.constructor==Person);//继承
+        console.log(Person.constructor==Function);//继承
+        
+//         我们需要牢记两点：①__proto__和constructor属性是对象所独有的；② prototype属性是函数所独有的，因为函数也是一种对象，所以函数也拥有__proto__和constructor属性。
+// __proto__属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的__proto__属性所指向的那个对象（父对象）里找，一直找，直到__proto__属性的终点null，再往上找就相当于在null上取值，会报错。通过__proto__属性将对象连接起来的这条链路即我们所谓的原型链。
+// prototype属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即f1.__proto__ === Foo.prototype。
+// constructor属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向Function。
+// ————————————————
+// 版权声明：本文为CSDN博主「码飞_CC」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/cc18868876837/article/details/81211729
+</script>
+<body>
+    
+</body>
+</html>
